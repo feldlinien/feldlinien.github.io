@@ -1,5 +1,5 @@
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(1920, 960);
 }
 
 function draw() {
@@ -41,5 +41,5 @@ function arrow(x, y,s,maxs, f) {
     stroke(0);
     line(x,y,x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag())) 
     fill(0);
-    ellipse(x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag()),width/200,width/200);
+    ellipse(x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag()),4,4);
 }
