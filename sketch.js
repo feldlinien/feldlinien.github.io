@@ -46,7 +46,7 @@ function arrow(x, y,s,maxs, f) {
     fill(color(f.mag()*0.02),20);
     noStroke()
     //rect(x-s/2, y-s/2, s, s);
-    if (Gewichten) strokeWeight(f.mag() * 100);
+    if (Gewichten) strokeWeight(f.mag() * 800);
     stroke(0);
     line(x,y,x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag())) 
     fill(0);
