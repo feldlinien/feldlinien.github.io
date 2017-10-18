@@ -1,5 +1,12 @@
+var b;
+var Gewichten;
+
 function setup() {
     createCanvas(1920, 960);
+	b = createCheckbox("Gewichten", false);
+	b.changed(GewichtenF);
+	b.position(width, 0);
+	Gewichten = false;
 }
 
 function draw() {
@@ -30,6 +37,7 @@ function draw() {
         }
     }
     fill(0,0)
+    strokeWeight(1);
     ellipse(v1.x,v1.y,size*2,size*2);
     ellipse(v2.x,v2.y,size*2,size*2);
 }
@@ -38,8 +46,17 @@ function arrow(x, y,s,maxs, f) {
     fill(color(f.mag()*0.02),20);
     noStroke()
     //rect(x-s/2, y-s/2, s, s);
+    if (Gewichten) strokeWeight(f.mag() * 100);
     stroke(0);
     line(x,y,x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag())) 
     fill(0);
     ellipse(x+maxs*(f.x/f.mag()),y+maxs*(f.y/f.mag()),4,4);
+}
+function GewichtenF() {
+	if (this.checked()) {
+		Gewichten = true;
+	} else {
+		Gewichten = false;
+	}
+
 }
