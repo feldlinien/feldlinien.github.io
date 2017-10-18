@@ -5,7 +5,7 @@ function setup() {
     createCanvas(1920, 960);
 	b = createCheckbox("Gewichten", false);
 	b.changed(GewichtenF);
-	b.position(width, 0);
+	b.position(0, height);
 	Gewichten = false;
 }
 
