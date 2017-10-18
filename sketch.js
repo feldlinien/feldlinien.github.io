@@ -13,8 +13,13 @@ function draw() {
     background(255);
     let size = 40;
     let maxSize =sqrt(2*(size*size))/2;
-    let v1 = createVector(200,height/2)
+    let v1;
     let v2;
+    if(keyIsPressed ){
+	v1 = createVector(200,height/2);
+    }else{
+        v1 = createVector(.3*width,height/2);
+    }
     if(!true){
         v2 = createVector(width-200,height/2)
      }else{
