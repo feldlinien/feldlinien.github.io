@@ -21,7 +21,7 @@ function draw() {
         v1 = createVector(.3*width,height/2);
     }
     if(!true){
-        v2 = createVector(width-200,height/2)
+        v2 = createVector(width-200,height/2);
      }else{
         v2 = createVector(mouseX,mouseY);
     }
