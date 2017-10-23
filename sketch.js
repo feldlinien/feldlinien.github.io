@@ -24,13 +24,12 @@ function setup() {
     f.mousePressed(farbenF);
     f.position(width+10, 110);
     f.size(f.size().width*1.3,f.size().height*1.3);
-console.log(f.size().width);
+
     r = createInput();
     r.position(width+10,170);
     r.size(f.size().width,f.size().height);
     r.value(50);
 }
-
 function draw() {
     background(255);
     let size = windowWidth/r.value();
