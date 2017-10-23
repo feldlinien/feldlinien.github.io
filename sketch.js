@@ -1,4 +1,6 @@
-var b;
+var m;
+var mode;
+var g;
 var Gewichten;
 var f;
 var farben;
@@ -7,26 +9,33 @@ var vect;
 var r;
 function setup() {
     createCanvas(windowWidth-windowWidth*.1, windowHeight);
+
+    mode = true;
+    m = createButton("Mode");
+    m.mousePressed(modeF);
+    m.position(width+10, 10);
+    m.size(m.size().width*1.3,m.size().height*1.3);
+
     vect = true;
-    v = createButton("Vectoren");
+    v = createButton("Vector");
     v.mousePressed(vectF);
-    v.position(width+10, 10);
+    v.position(width+10, 60);
     v.size(v.size().width*1.3,v.size().height*1.3);
 
     Gewichten = false;
-    b = createButton("Gewichten");
-    b.mousePressed(GewichtenF);
-    b.position(width+10, 60);
-    b.size(b.size().width*1.3,b.size().height*1.3);
+    g = createButton("VectorWeights");
+    g.mousePressed(GewichtenF);
+    g.position(width+10, 110);
+    g.size(g.size().width*1.0,g.size().height*1.3);
 
     farben = false;
-    f = createButton("Farbe");
+    f = createButton("ColorWeights");
     f.mousePressed(farbenF);
-    f.position(width+10, 110);
-    f.size(f.size().width*1.3,f.size().height*1.3);
+    f.position(width+10, 160);
+    f.size(f.size().width*1.0,f.size().height*1.3);
 
     r = createInput();
-    r.position(width+10,170);
+    r.position(width+10,210);
     r.size(f.size().width,f.size().height);
     r.value(50);
 }
@@ -48,22 +57,23 @@ function draw() {
             let final1 = p5.Vector.mult(p5.Vector.sub(p,v2).normalize(),-1/p.dist(v2));
             let finale2 = p5.Vector.mult(p5.Vector.sub(p,v1).normalize(),-1/p.dist(v1));
             let force;
-            if (keyIsPressed )force = p5.Vector.add(final1,finale2);
+            if (mode)force = p5.Vector.add(final1,finale2);
             else force = p5.Vector.sub(final1,finale2);
             if (farben)boxe(i, j,size, force);
             if (vect)arrow(i, j,size,maxSize, force);
         }
     }
-    fill(0,0);
-    stroke(0);
-    strokeWeight(1);
-    ellipse(v1.x,v1.y,size*2,size*2);
-    ellipse(v2.x,v2.y,size*2,size*2);
+    if (vect){
+        fill(0,0);
+        stroke(0);
+        strokeWeight(1);
+        ellipse(v1.x,v1.y,size*2,size*2);
+        ellipse(v2.x,v2.y,size*2,size*2);
+    }
 }
 
 function arrow(x, y,s,maxs, f) {
     let mag = f.mag();
-    stroke(0);
     if (Gewichten){strokeWeight(min(mag * 900,7));stroke(max(255 - mag * 100000,0));}
     line(x,y,x+maxs*(f.x/mag),y+maxs*(f.y/mag)); 
     fill(0);
@@ -132,6 +142,10 @@ function farbenF() {
     else farben = true;
 }
 function vectF() {
-    if (vect) vect = false;
+    if (vect){ vect = false;Gewichten = false;}
     else vect = true;
+}
+function modeF() {
+    if (mode) mode = false;
+    else mode = true;
 }
